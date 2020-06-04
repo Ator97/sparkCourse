@@ -2,27 +2,27 @@
 
 ## Ejecutar
 
-Es necesario tener instalado vagrant y virtualbox
+Es necesario tener instalado vagrant y virtualbox.
 
 ```console
 username@hostname:~$ vagrant up
 ```
 
-Inicializará vagrant e instalará los paquetes necesarios para poder ejecutar Spark2 con Python3
+Inicializará vagrant e instalará los paquetes necesarios para poder ejecutar Spark2 con Python3.
+
 
 Una vez instalado, es necesario conectarse por ssh para levantar jupyter notebook. Primero requermos la ip publica, por lo que con el siguiente comando conocemos la ip:
 
 
 ```console
-username@hostname ssh -c "hostname -I | cut -d' ' -f2" 2>/dev/null
+username@hostname:~$ ssh -c "hostname -I | cut -d' ' -f2" 2>/dev/null
 ```
 
-Una vez obtenida ejecutamos:
+Una vez obtenida, ejecutamos:
 
 ```console
-username@hostname ssh -L 8888:localhost:8888 vagrant@ipObtenida
+username@hostname:~$ ssh -L 8888:localhost:8888 vagrant@ipObtenida
 vagrant@ipObtenida's password: 
-
 
 vagrant@spark:~$ jupyter-notebook --no-browser
 [I 23:42:05.839 NotebookApp] JupyterLab extension loaded from /home/vagrant/anaconda3/lib/python3.7/site-packages/jupyterlab
@@ -38,6 +38,29 @@ vagrant@spark:~$ jupyter-notebook --no-browser
 Y Finalmente daremos doble click sobre cualquiera de las ligas que nos expulse jupyter-notebook --no-browser.
 No abrirá una ventana en nuestro navegador por defecto una pestaña de juputer anaconda listo para trabajar.
 
+
+## Notas sobre Vagrant
+
+Una vez descargada la máquina virtual, podemos interactuar con ella conectandonos con ayuda de ssh. Aun que poemos conectarnos directamente a la máquina virutal, esta  se encuentra ejecutandose en segundo plano. Es altamente recomendable que contine así ya que vagrant posee lo necesario para un despliege completo. 
+
+Con el siguiente ejemplo podemos conectarno a la maquina virutal:
+
+```console
+username@hostname:~$ vagrant ssh
+```
+Si deseamos terminar la máquna virutal bastará con :
+
+```console
+username@hostname:~$ vagrant halt
+```
+
+Por otro lado si ya no deseamos mantenerla  en nuestro disco duro podemos eliminarla con:
+
+```console
+username@hostname:~$ vagrant destroy
+```
+
+Es importante mencionar, si es la primera vez que usar vagrant, el proceso de descarga y configuacion y ejecución es el mismo, por lo que con 'vagrant up' podemos hacer ambas tareas.
 
 
 ## Temario 
